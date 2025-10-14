@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const words = ["refill", "rethink", "reuse"];
 // Repeat the sequence to ensure it's wide enough for a seamless marquee effect across all screen sizes.
@@ -20,13 +20,10 @@ const MarqueeItems = () => (
 const AnimatedMarquee = () => {
   return (
     <section className="bg-background py-16 overflow-hidden">
-      <div className="flex w-max" style={{ animation: 'marquee 30s linear infinite' }}>
-        <div className="flex flex-shrink-0 items-center">
-          <MarqueeItems />
-        </div>
-        <div className="flex flex-shrink-0 items-center" aria-hidden="true">
-          <MarqueeItems />
-        </div>
+      <div className="flex animate-marquee w-[200%]">
+        {/* Repeat the content twice for seamless loop */}
+        <MarqueeItems />
+        <MarqueeItems />
       </div>
     </section>
   );
