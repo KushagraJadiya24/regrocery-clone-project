@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI Colors */
+  --color-background: #F5F1ED; /* cream-bg */
+  --color-foreground: #4A4A4A; /* text-gray */
+
+  --color-card: #FFFFFF; /* white */
+  --color-card-foreground: #4A4A4A; /* text-gray */
+
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #4A4A4A;
+
+  --color-primary: #FF4820; /* primary-coral */
+  --color-primary-foreground: #FFFFFF; /* white */
+
+  --color-secondary: #F5F1ED; /* cream-bg */
+  --color-secondary-foreground: #4A4A4A; /* text-gray */
+
+  --color-muted: #F5F1ED; /* cream-bg */
+  --color-muted-foreground: #FFCABB; /* text-light-coral */
+
+  --color-accent: #FF4820; /* primary-coral */
+  --color-accent-foreground: #FFFFFF; /* white */
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #FF4820; /* border-coral */
+  --color-input: #FFFFFF; /* white */
+  --color-ring: #FF4820; /* primary-coral */
+
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  /* Custom Colors */
+  --color-text-coral: #FF4820;
+  --color-text-dark-coral: #E63E1C;
+  --color-text-light-coral: #FFCABB;
+  --color-text-gray: #4A4A4A;
+  --color-badge-red: #FF4820;
+  --color-footer-coral: #FF4820;
+
+  /* Typography */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Shadcn/UI Radius */
+  --radius-lg: 0px; /* Sharp corners for cards */
+  --radius-md: 0px;
+  --radius-sm: 0px;
+
+  /* Shadcn/UI Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --radius: var(--radius-lg);
+  }
+
+  /* Base Typography */
+  html {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-gray);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text-coral);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: 4.5rem; /* 72px */
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: 3rem; /* 48px */
+    line-height: 1.2;
+  }
+
+  .text-hero-heading {
+    font-family: var(--font-display);
+    font-size: 7.5rem; /* 120px */
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--color-text-coral);
+  }
+
+  .text-section-heading-lg {
+    font-family: var(--font-display);
+    font-size: 6rem; /* 96px */
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--color-text-coral);
+  }
+
+  .text-section-heading-md {
+    font-family: var(--font-display);
+    font-size: 3.75rem; /* 60px */
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--color-text-coral);
+  }
+
+  .text-product-title {
+    font-family: var(--font-body);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: var(--color-text-coral);
+  }
+
+  .text-product-price {
+    font-family: var(--font-body);
+    font-size: 1.25rem; /* 20px */
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: var(--color-text-coral);
+  }
+
+  .text-body {
+    font-family: var(--font-body);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: var(--color-text-gray);
+  }
+
+  .text-button {
+    font-family: var(--font-body);
+    font-size: 1.25rem; /* 20px */
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    color: var(--color-text-coral);
+  }
+
+  .text-badge {
+    font-family: var(--font-body);
+    font-size: 0.875rem; /* 14px */
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: var(--color-badge-red);
+  }
+
+  .text-footer {
+    font-family: var(--font-body);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: var(--color-primary-foreground); /* white */
+  }
+
+  .text-navigation {
+    font-family: var(--font-display);
+    font-size: 1.5rem; /* 24px */
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  /* Shadcn/UI base styles */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
