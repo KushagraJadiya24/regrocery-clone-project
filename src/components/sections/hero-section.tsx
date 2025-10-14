@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 const HeroSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -13,16 +13,16 @@ const HeroSection = () => {
       setScrollProgress(progress);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Calculate scaling and opacity based on scroll progress
-  const scale = 1 - (scrollProgress * 0.85); // Shrinks from 1 to 0.15
-  const opacity = 1 - (scrollProgress * 1.2); // Fades out
+  const scale = 1 - scrollProgress * 0.85; // Shrinks from 1 to 0.15
+  const opacity = 1 - scrollProgress * 1.2; // Fades out
 
   return (
-    <section className="relative w-full h-[70vh] md:h-[70vh] lg:h-[70vh] overflow-hidden mt-20">
+    <section className="relative w-full h-[70vh] md:h-[70vh] lg:h-[100vh] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -38,10 +38,10 @@ const HeroSection = () => {
 
       {/* Large "re_" text that shrinks on scroll */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <h1 
+        <h1
           className="font-['Playfair_Display',serif] text-[#FF4820] font-normal transition-all duration-100"
           style={{
-            fontSize: `${12 - (scrollProgress * 10)}rem`,
+            fontSize: `${12 - scrollProgress * 10}rem`,
             transform: `scale(${scale})`,
             opacity: opacity,
           }}
