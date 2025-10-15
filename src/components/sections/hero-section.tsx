@@ -39,7 +39,7 @@ const HeroSection = () => {
       {/* Large "re_" text that shrinks on scroll */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <h1
-          className="font-['Playfair_Display',serif] text-[#FF4820] font-normal transition-all duration-100"
+          className="font-['Playfair_Display',serif] text-[#ffffff] font-normal transition-all duration-100"
           style={{
             fontSize: `${12 - scrollProgress * 10}rem`,
             transform: `scale(${scale})`,
