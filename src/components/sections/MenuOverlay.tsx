@@ -48,7 +48,7 @@ const MenuOverlay: React.FC<MenuOverlayProps> = ({ isOpen, onClose }) => {
                   {item}
                 </a>
               ))}
-              <button className="bg-[#FF4528] text-white px-5 py-3 rounded-full text-sm mt-6">
+              <button className="bg-[#ff4528f1] text-white px-5 py-3 rounded-full text-sm mt-6">
                 Select a Location ⌄
               </button>
             </div>
