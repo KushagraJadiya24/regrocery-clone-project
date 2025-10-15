@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ShoppingCart, Menu, X, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
@@ -21,6 +21,10 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Dynamic color scheme
+  const textColor = isScrolled ? "text-[#FF4820]" : "text-white";
+  const hoverColor = isScrolled ? "hover:text-[#E63E1C]" : "hover:opacity-70";
+
   return (
     <>
       {/* Main Navbar */}
@@ -31,55 +35,56 @@ const Navbar = () => {
             : "bg-transparent border-transparent"
         }`}
       >
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-20 relative">
-            {/* Left — Menu button */}
+        {/* Added top padding */}
+        <div className="relative h-24 pt-3">
+          {/* Left — Menu button */}
+          <div className="absolute left-6 lg:left-12 flex items-center z-[60]">
             <button
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label="Toggle menu"
-              className="text-[#FF4820] hover:text-[#E63E1C] transition-colors z-[60]"
+              className={`${textColor} ${hoverColor} transition-colors`}
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className="w-7 h-7" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className="w-7 h-7" />
               )}
             </button>
+          </div>
 
-            {/* Center — Logo */}
-            <div className="absolute left-1/2 -translate-x-1/2 flex items-center pointer-events-none">
-              <span
-                className={`font-['Playfair_Display',serif] text-[#FF4820] transition-all duration-500 ${
-                  isScrolled
-                    ? "opacity-100 translate-y-0 text-4xl"
-                    : "opacity-0 -translate-y-3 text-2xl"
-                }`}
-              >
-                re_
-              </span>
-            </div>
+          {/* Center — Logo */}
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center pointer-events-none">
+            <span
+              className={`font-['Playfair_Display',serif] transition-all duration-500 ${
+                isScrolled
+                  ? "text-[#FF4820] opacity-100 translate-y-0 text-5xl"
+                  : "text-white opacity-0 translate-y-0 text-5xl"
+              }`}
+            >
+              re_
+            </span>
+          </div>
 
-            {/* Right — Icons */}
-            <div className="flex items-center space-x-6 z-[60]">
-              <button
-                className="text-[#FF4820] hover:text-[#E63E1C] transition-colors"
-                aria-label="Search"
-              >
-                <Search className="w-6 h-6" />
-              </button>
-              <button
-                className="text-[#FF4820] hover:text-[#E63E1C] font-['Playfair_Display',serif] text-lg transition-colors"
-                aria-label="Order"
-              >
-                Order
-              </button>
-              <button
-                className="text-[#FF4820] hover:text-[#E63E1C] transition-colors"
-                aria-label="Cart"
-              >
-                <ShoppingCart className="w-6 h-6" />
-              </button>
-            </div>
+          {/* Right — Icons */}
+          <div className="absolute right-6 lg:right-12 flex items-center space-x-8 z-[60]">
+            <button
+              className={`${textColor} ${hoverColor} transition-colors`}
+              aria-label="Search"
+            >
+              <Search className="w-7 h-7" />
+            </button>
+
+            {/* Order Button */}
+            <button
+              className={`font-['Playfair_Display',serif] text-xl px-6 py-2.5 rounded-full border transition-all duration-300 ${
+                isScrolled
+                  ? "bg-[#FF4820] text-white border-[#FF4820] hover:bg-[#E63E1C]"
+                  : "bg-white text-[#FF4820] border-white hover:bg-[#f5f5f5]"
+              }`}
+              aria-label="Order"
+            >
+              Order
+            </button>
           </div>
         </div>
       </nav>
@@ -94,23 +99,22 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[9999] bg-[#F9F7F2] text-[#FF4820] overflow-y-auto"
           >
-            {/* Foreground content */}
             <div className="relative z-10">
               {/* Header */}
               <div className="flex justify-between items-center px-8 py-6">
-                <p className="text-lg font-medium">Menu</p>
+                <p className="text-xl font-medium">Menu</p>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-[#FF4820] text-lg font-medium hover:underline"
+                  className="text-[#FF4820] text-xl font-medium hover:underline"
                 >
                   Close
                 </button>
               </div>
 
               {/* Menu Grid */}
-              <div className="px-8 md:px-16 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8">
+              <div className="px-8 md:px-16 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10">
                 {/* Column 1 */}
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {[
                     "All 250+",
                     "New Arrivals 143",
@@ -126,13 +130,13 @@ const Navbar = () => {
                       {item}
                     </a>
                   ))}
-                  <button className="bg-[#FF4820] text-white px-5 py-3 rounded-full text-sm mt-6">
+                  <button className="bg-[#FF4820] text-white px-6 py-3 rounded-full text-base mt-6">
                     Select a Location ⌄
                   </button>
                 </div>
 
                 {/* Column 2 */}
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {[
                     "Snacks 119",
                     "Bath & Body 112",
@@ -161,7 +165,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Column 3 */}
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {[
                     "Bundles 11",
                     "Packaged 51",
@@ -179,7 +183,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Column 4 */}
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
                     {["club / re_", "Account", "E-Gift Cards"].map((item) => (
                       <a

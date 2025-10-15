@@ -33,7 +33,6 @@ const HeroSection = () => {
           priority
         />
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
       </div>
 
       {/* Large "re_" text that shrinks on scroll */}
@@ -41,7 +40,7 @@ const HeroSection = () => {
         <h1
           className="font-['Playfair_Display',serif] text-[#ffffff] font-normal transition-all duration-100"
           style={{
-            fontSize: `${12 - scrollProgress * 10}rem`,
+            fontSize: `${45 - scrollProgress * 10}rem`,
             transform: `scale(${scale})`,
             opacity: opacity,
           }}
