@@ -83,7 +83,7 @@ const ProductCard = ({ product }: { product: Product }) => (
     <div className="mt-6 flex flex-col flex-grow">
       <a
         href={product.href}
-        className="text-primary font-semibold text-base leading-[1.4] hover:underline text-[#333333]"
+        className="text-primary font-semibold text-base leading-[1.4] hover:underline"
       >
         {product.name}
       </a>
