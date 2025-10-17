@@ -57,7 +57,7 @@ const Navbar = () => {
             <span
               className={`font-['Playfair_Display',serif] transition-all duration-500 ${
                 isScrolled
-                  ? "text-[#FF4820] opacity-100 translate-y-0 text-5xl"
+                  ? "text-[#FF4820] opacity-100 translate-y-0 -translate-x-7 text-5xl "
                   : "text-white opacity-0 translate-y-0 text-5xl"
               }`}
             >

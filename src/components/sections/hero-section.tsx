@@ -5,17 +5,37 @@ import Image from "next/image";
 
 const HeroSection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(1024); // Default to desktop size
 
   useEffect(() => {
+    // Set initial window width
+    setWindowWidth(window.innerWidth);
+
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.7;
       const progress = Math.min(window.scrollY / heroHeight, 1);
       setScrollProgress(progress);
     };
 
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // Calculate base font size based on window width
+  const getBaseFontSize = () => {
+    if (windowWidth < 640) return 15; // mobile
+    if (windowWidth < 1024) return 25; // tablet
+    return 45; // desktop
+  };
 
   // Calculate scaling and opacity based on scroll progress
   const scale = 1 - scrollProgress * 0.85; // Shrinks from 1 to 0.15
@@ -38,9 +58,9 @@ const HeroSection = () => {
       {/* Large "re_" text that shrinks on scroll */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <h1
-          className="font-['Playfair_Display',serif] text-[#ffffff] font-normal transition-all duration-100"
+          className="font-['Playfair_Display',serif] text-white font-normal transition-all duration-100 leading-none"
           style={{
-            fontSize: `${45 - scrollProgress * 10}rem`,
+            fontSize: `${getBaseFontSize() - scrollProgress * 10}rem`,
             transform: `scale(${scale})`,
             opacity: opacity,
           }}

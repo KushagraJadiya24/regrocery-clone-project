@@ -60,8 +60,8 @@ const products: Product[] = [
 ];
 const ProductCard = ({ product }: { product: Product }) => (
   <div
-    className="bg-[#F5F1E8] rounded-2xl p-6 flex-shrink-0 flex flex-col"
-    style={{ width: "calc(25% - 4px)" }} // 25% minus adjusted gap
+    className="bg-[#F5F1E8] rounded-2xl p-6 flex-shrink-0 flex flex-col w-[85%] sm:w-[48%] md:w-[30%] lg:w-[25%]"
+    // 25% minus adjusted gap
   >
     {/* Bigger grey square wrapper */}
     <div className="w-full flex justify-center">
